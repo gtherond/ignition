@@ -3,4 +3,4 @@ version: 1.0.0
 ignition:
   config:
     replace:
-      - source: https://github.com/gtherond/ignition/build/bootstrap.ign
+      - source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
