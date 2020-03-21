@@ -1,0 +1,18 @@
+{
+  "ignition": {
+    "config": {
+      "replace": {
+        "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
+        "verification": {}
+      }
+    },
+    "security": {
+      "tls": {}
+    },
+    "timeouts": {},
+    "version": "3.0.0"
+  },
+  "passwd": {},
+  "storage": {},
+  "systemd": {}
+}
