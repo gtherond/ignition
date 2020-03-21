@@ -47,9 +47,14 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n[Service]\nType=oneshot\nExecStart=rpm-ostree install --reboot cockpit-bridge cockpit-ostree cockpit-system cockpit-podman\n# An alternative to --reboot\n# ExecStartPost=rpm-ostree ex livefs --i-like-danger\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target",
+        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n[Service]\nType=oneshot\nExecStart=rpm-ostree install --reboot cockpit-bridge cockpit-ostree cockpit-system cockpit-podman\n# An alternative to --reboot\n# ExecStartPost=rpm-ostree ex livefs --i-like-danger\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "overlay-install.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Start cockpit-ws web interface.\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nAfter=boot-complete.target\n\n[Service]\nExecStartPre=/bin/podman pull cockpit/ws\nExecStart=/bin/podman runlabel RUN --name cockpit-ws cockpit/ws\n\n[Install]\nWantedBy=multi-user.target",
+        "enabled": true,
+        "name": "cockpit-ws.service"
       }
     ]
   }
