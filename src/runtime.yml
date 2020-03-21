@@ -45,3 +45,20 @@ systemd:
         [Install]
         RequiredBy=boot-complete.target
         WantedBy=multi-user.target
+
+    - name: cockpit-ws.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Start cockpit-ws web interface.
+        Wants=network-online.target
+        After=network-online.target
+        After=multi-user.target
+        After=boot-complete.target
+
+        [Service]
+        ExecStartPre=/bin/podman pull cockpit/ws
+        ExecStart=/bin/podman runlabel RUN --name cockpit-ws cockpit/ws
+
+        [Install]
+        WantedBy=multi-user.target
