@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.0.0
+ignition:
+  config:
+    replace:
+      source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
