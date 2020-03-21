@@ -4,3 +4,5 @@ ignition:
   config:
     replace:
       source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
+      verification:
+        hash: sha512-cdf19c9b1dcef8e9382f5e201c555e5c2f8081273767cac6f2c3f0a896eb37af4f32105e804fe1303ebfa3fdbb31753a6537da3548af27a322f124380ce8369a
