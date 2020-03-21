@@ -4,7 +4,7 @@
       "replace": {
         "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
         "verification": {
-          "hash": "sha512-cdf19c9b1dcef8e9382f5e201c555e5c2f8081273767cac6f2c3f0a896eb37af4f32105e804fe1303ebfa3fdbb31753a6537da3548af27a322f124380ce8369a"
+          "hash": "sha512-e5efd7c080eed359dc7f011f866a53cabc3f3ec01efe95ca5ddcee18dcf40b61f7afeb4b6cdf2aa16dfdb85f43507144d33a2ff6474460008d440ef3dc28b728"
         }
       }
     },
