@@ -3,9 +3,7 @@
     "config": {
       "replace": {
         "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
-        "verification": {
-          "hash": "sha512-e5efd7c080eed359dc7f011f866a53cabc3f3ec01efe95ca5ddcee18dcf40b61f7afeb4b6cdf2aa16dfdb85f43507144d33a2ff6474460008d440ef3dc28b728"
-        }
+        "verification": {}
       }
     },
     "security": {
