@@ -14,8 +14,7 @@ systemd:
         After=boot-complete.target
 
         [Service]
-        ExecStartPre=/bin/podman pull cockpit/ws
-        ExecStart=/bin/podman container runlabel --name cockpit-ws RUN cockpit/ws
+        ExecStart=podman container runlabel --name cockpit RUN cockpit/ws
 
         [Install]
         WantedBy=multi-user.target
