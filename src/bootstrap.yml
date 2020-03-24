@@ -39,9 +39,7 @@ systemd:
         Before=boot-complete.target
         [Service]
         Type=oneshot
-        ExecStart=rpm-ostree install --reboot cockpit-bridge cockpit-ostree cockpit-system cockpit-podman
-        # An alternative to --reboot
-        # ExecStartPost=rpm-ostree ex livefs --i-like-danger
+        ExecStart=rpm-ostree install --reboot cockpit-system cockpit-ostree cockpit-podman cockpit-networkmanager
         [Install]
         RequiredBy=boot-complete.target
         WantedBy=multi-user.target
