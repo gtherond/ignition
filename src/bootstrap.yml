@@ -1,6 +1,52 @@
 variant: fcos
 version: 1.0.0
+
+# Allowing a remote privileged user login for DEBUG and RECOVERY purpose, this key should be stored securely and only available to
+# a restricted amount of authorized and properly identified people.
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+
+# Create an update wariness and reboot strategy, as we're not in a clustered environment we don't use fleet_lock reboot strategy.
+storage:
+  files:
+    - path: /etc/hostname
+      contents:
+        inline: |
+          ns1.bitswalk.net
+
+    - path: /etc/zincati/config.d/55-updates-strategy.toml
+      contents:
+        inline: |
+          [identity]
+          rollout_wariness = 0.5
+          [updates]
+          strategy = "immediate"
+
+systemd:
+  units:
+    - name: overlay-install.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Install Overlay Packages
+        ConditionFirstBoot=yes
+        Wants=network-online.target
+        After=network-online.target
+        After=multi-user.target
+        Before=boot-complete.target
+        [Service]
+        Type=oneshot
+        ExecStart=rpm-ostree install --reboot cockpit-bridge cockpit-ostree cockpit-system cockpit-podman
+        # An alternative to --reboot
+        # ExecStartPost=rpm-ostree ex livefs --i-like-danger
+        [Install]
+        RequiredBy=boot-complete.target
+        WantedBy=multi-user.target
+
 ignition:
   config:
-    replace:
+    merge:
       source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
