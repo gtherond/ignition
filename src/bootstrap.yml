@@ -44,7 +44,7 @@ systemd:
 
         [Service]
         Type=oneshot
-        ExecStart=rpm-ostree install --reboot cockpit-system cockpit-ostree cockpit-podman
+        ExecStart=rpm-ostree install cockpit-system cockpit-ostree cockpit-podman cockpit-bridge cockpit-networkmanager cockpit-storaged --reboot
 
         [Install]
         RequiredBy=boot-complete.target

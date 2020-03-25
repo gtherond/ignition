@@ -10,8 +10,6 @@ systemd:
         Description=Start cockpit-ws web interface.
         Wants=network-online.target
         After=network-online.target
-        After=multi-user.target
-        After=boot-complete.target
 
         [Service]
         ExecStart=podman container runlabel --name cockpit RUN cockpit/ws
