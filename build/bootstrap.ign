@@ -1,8 +1,14 @@
 {
   "ignition": {
     "config": {
+      "merge": [
+        {
+          "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
+          "verification": {}
+        }
+      ],
       "replace": {
-        "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
+        "source": null,
         "verification": {}
       }
     },
@@ -12,7 +18,45 @@
     "timeouts": {},
     "version": "3.0.0"
   },
-  "passwd": {},
-  "storage": {},
-  "systemd": {}
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "group": {},
+        "path": "/etc/hostname",
+        "user": {},
+        "contents": {
+          "source": "data:,ns1.bitswalk.net%0A",
+          "verification": {}
+        }
+      },
+      {
+        "group": {},
+        "path": "/etc/zincati/config.d/55-updates-strategy.toml",
+        "user": {},
+        "contents": {
+          "source": "data:,%5Bidentity%5D%0Arollout_wariness%20%3D%200.5%0A%5Bupdates%5D%0Astrategy%20%3D%20%22immediate%22%0A",
+          "verification": {}
+        }
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install --reboot cockpit-system cockpit-ostree cockpit-podman cockpit-networkmanager\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "overlay-install.service"
+      }
+    ]
+  }
 }
