@@ -17,9 +17,9 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Start cockpit-ws web interface.\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nAfter=boot-complete.target\n\n[Service]\nExecStart=podman container runlabel --name cockpit RUN cockpit/ws\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=cockpit/ws podman container\n\n[Service]\nType=oneshot\nExecStartPre=/usr/bin/podman rm -f cockpit-ws\nExecStart=/usr/bin/podman container runlabel --name cockpit-ws RUN $IMAGE\nExecStop=/usr/bin/podman rm -f cockpit-ws\nRemainAfterExit=yes\nKillMode=none\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
-        "name": "cockpit-ws.service"
+        "name": "cockpit.service"
       }
     ]
   }

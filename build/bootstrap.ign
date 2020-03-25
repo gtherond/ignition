@@ -53,7 +53,7 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install --reboot cockpit-system cockpit-ostree cockpit-podman\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install cockpit-system cockpit-ostree cockpit-podman cockpit-bridge cockpit-networkmanager cockpit-storaged --reboot\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "overlay-install.service"
       }
