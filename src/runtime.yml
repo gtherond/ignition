@@ -3,16 +3,19 @@ version: 1.0.0
 
 systemd:
   units:
-    - name: cockpit-ws.service
+    - name: cockpit.service
       enabled: true
       contents: |
         [Unit]
-        Description=Start cockpit-ws web interface.
-        Wants=network-online.target
-        After=network-online.target
+        Description=cockpit/ws podman container
 
         [Service]
-        ExecStart=podman container runlabel --name cockpit RUN cockpit/ws
+        Type=oneshot
+        ExecStartPre=/usr/bin/podman rm -f cockpit-ws
+        ExecStart=/usr/bin/podman container runlabel --name cockpit-ws RUN $IMAGE
+        ExecStop=/usr/bin/podman rm -f cockpit-ws
+        RemainAfterExit=yes
+        KillMode=none
 
         [Install]
         WantedBy=multi-user.target
