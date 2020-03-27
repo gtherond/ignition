@@ -11,8 +11,8 @@ systemd:
 
         [Service]
         Type=oneshot
-        ExecStartPre=/usr/bin/podman rm -f cockpit-ws
-        ExecStart=/usr/bin/podman container runlabel --name cockpit-ws RUN $IMAGE
+        ExecStartPre=-/usr/bin/podman rm -f cockpit-ws
+        ExecStart=/usr/bin/podman container runlabel --name cockpit-ws RUN cockpit/ws
         ExecStop=/usr/bin/podman rm -f cockpit-ws
         RemainAfterExit=yes
         KillMode=none
