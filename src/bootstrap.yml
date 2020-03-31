@@ -17,17 +17,20 @@ passwd:
 storage:
   files:
     - path: /etc/hostname
+      mode: 0640
       contents:
         inline: |
           ns1.bitswalk.net
 
     - path: /etc/zincati/config.d/51-rollout-wariness.toml
+      mode: 0640
       contents:
         inline: |
           [identity]
           rollout_wariness = 0.5
 
     - path: /etc/zincati/config.d/55-updates-strategy.toml
+      mode: 0640
       contents:
         inline: |
           [updates]
