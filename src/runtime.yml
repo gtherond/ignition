@@ -3,17 +3,19 @@ version: 1.0.0
 
 systemd:
   units:
-    - name: cockpit.service
+    - name: gitea.service
       enabled: true
       contents: |
         [Unit]
-        Description=cockpit/ws podman container
+        Description=gitea pod
 
         [Service]
         Type=oneshot
-        ExecStartPre=-/usr/bin/podman rm -f cockpit-ws
-        ExecStart=/usr/bin/podman container runlabel --name cockpit-ws RUN cockpit/ws
-        ExecStop=/usr/bin/podman rm -f cockpit-ws
+        ExecStartPre=/usr/bin/podman pod rm gitea
+        ExecStartPre=/usr/bin/podman pod create --name gitea -p 22 -p 80:3000
+        ExecStartPre=/usr/bin/podman run --name gitea-db -d --pod gitea -v /var/lib/gitea/db/:/var/lib/mysql:z mariadb:10.5.1
+        ExecStart=/usr/bin/podman run --name gitea-app -d --pod gitea -v /var/lib/gitea/:/data:z gitea/gitea:1.11.3
+        ExecStop=/usr/bin/podman pod stop gitea
         RemainAfterExit=yes
         KillMode=none
 
