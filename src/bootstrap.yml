@@ -34,21 +34,21 @@ storage:
           strategy = "immediate"
     
     - path: /etc/ssh/sshd_config
-      append:
-        inline: |
-          Port 2222
-          LoginGraceTime 2m
-          StrictModes yes
-          MaxAuthTries 4
-          MaxSessions 5
-          PubkeyAuthentication yes
-          PermitEmptyPassword no
-          AllowAgentForwarding yes
-          AllowTcpForwarding no
-          GatewayPorts no
-          X11Forwarding no
-          TCPKeepAlive yes
-          Compression delayed
+      - append:
+          inline: |
+            Port 2222
+            LoginGraceTime 2m
+            StrictModes yes
+            MaxAuthTries 4
+            MaxSessions 5
+            PubkeyAuthentication yes
+            PermitEmptyPassword no
+            AllowAgentForwarding yes
+            AllowTcpForwarding no
+            GatewayPorts no
+            X11Forwarding no
+            TCPKeepAlive yes
+            Compression delayed
 
 systemd:
   units:
