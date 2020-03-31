@@ -37,23 +37,50 @@
         "contents": {
           "source": "data:,ns1.bitswalk.net%0A",
           "verification": {}
-        }
+        },
+        "mode": 416
+      },
+      {
+        "group": {},
+        "path": "/etc/zincati/config.d/51-rollout-wariness.toml",
+        "user": {},
+        "contents": {
+          "source": "data:,%5Bidentity%5D%0Arollout_wariness%20%3D%200.5%0A",
+          "verification": {}
+        },
+        "mode": 416
       },
       {
         "group": {},
         "path": "/etc/zincati/config.d/55-updates-strategy.toml",
         "user": {},
         "contents": {
-          "source": "data:,%5Bidentity%5D%0Arollout_wariness%20%3D%200.5%0A%5Bupdates%5D%0Astrategy%20%3D%20%22immediate%22%0A",
+          "source": "data:,%5Bupdates%5D%0Astrategy%20%3D%20%22immediate%22%0A",
           "verification": {}
-        }
+        },
+        "mode": 416
+      },
+      {
+        "group": {},
+        "path": "/etc/ssh/sshd_config",
+        "user": {},
+        "append": [
+          {
+            "source": "data:,Port%202222%0ALoginGraceTime%202m%0AStrictModes%20yes%0AMaxAuthTries%204%0AMaxSessions%205%0APubkeyAuthentication%20yes%0APermitEmptyPassword%20no%0AAllowAgentForwarding%20yes%0AAllowTcpForwarding%20no%0AGatewayPorts%20no%0AX11Forwarding%20no%0ATCPKeepAlive%20yes%0ACompression%20delayed%0A",
+            "verification": {}
+          }
+        ],
+        "contents": {
+          "verification": {}
+        },
+        "mode": 416
       }
     ]
   },
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install cockpit-system cockpit-ostree cockpit-podman cockpit-bridge cockpit-networkmanager cockpit-storaged --reboot\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install cockpit-system cockpit-ostree cockpit-podman cockpit-bridge cockpit-networkmanager cockpit-storaged cockpit-ws --reboot\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "overlay-install.service"
       }
