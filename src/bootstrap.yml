@@ -34,6 +34,7 @@ storage:
           strategy = "immediate"
     
     - path: /etc/ssh/sshd_config
+      mode: 0640
       append:
         - inline: |
             Port 2222
