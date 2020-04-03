@@ -80,9 +80,9 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Install Overlay Packages\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=rpm-ostree install cockpit-system cockpit-ostree cockpit-podman cockpit-bridge cockpit-networkmanager cockpit-storaged cockpit-ws --reboot\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Change selinux ssh domain config\nConditionFirstBoot=yes\nWants=network-online.target\nAfter=network-online.target\nAfter=multi-user.target\nBefore=boot-complete.target\n\n[Service]\nType=oneshot\nExecStart=semanage port -a -t ssh_port_t -p tcp 2222\n\n[Install]\nRequiredBy=boot-complete.target\nWantedBy=multi-user.target",
         "enabled": true,
-        "name": "overlay-install.service"
+        "name": "sshd-selinux.service"
       }
     ]
   }
