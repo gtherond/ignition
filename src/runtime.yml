@@ -12,7 +12,7 @@ systemd:
         [Service]
         Type=oneshot
         ExecStartPre=/usr/bin/podman pod rm gitea
-        ExecStartPre=/usr/bin/podman pod create --name gitea -p 22 -p 80:3000
+        ExecStartPre=/usr/bin/podman pod create --name gitea -p 2222:22 -p 80:3000
         ExecStartPre=/usr/bin/podman run --name gitea-db -d --pod gitea -v /var/lib/gitea/db/:/var/lib/mysql:z -e MYSQL_RANDOM_ROOT_PASSWORD=yes -e MYSQL_DATABASE="gitea" -e MYSQL_USER="gitea" -e MYSQL_PASSWORD="Ch@ng3M3" mariadb:10.5.1
         ExecStart=/usr/bin/podman run --name gitea-app -d --pod gitea -v /var/lib/gitea/:/data:z gitea/gitea:1.11.3
         ExecStop=/usr/bin/podman pod stop gitea
