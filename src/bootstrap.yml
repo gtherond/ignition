@@ -43,23 +43,3 @@ storage:
       overwrite: true
       contents:
         source: https://raw.githubusercontent.com/gtherond/ignition/master/config/secretsManager/config.json
-
-systemd:
-  units:
-    - name: vault.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=secret manager pod service
-
-        [Service]
-        Type=oneshot
-        ExecStartPre=/usr/bin/podman pod rm secret
-        ExecStartPre=/usr/bin/podman pod create --name secret
-        ExecStart=/usr/bin/podman run --name vault -d --pod secret -v /var/lib/vault/config/:/vault/config/:ro -v /var/lib/vault/data/:/vault/file/:z vault:latest server
-        ExecStop=/usr/bin/podman pod stop secret
-        RemainAfterExit=yes
-        KillMode=none
-
-        [Install]
-        WantedBy=multi-user.target

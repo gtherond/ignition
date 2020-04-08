@@ -6,7 +6,7 @@
     {
       "label": "Ignition configuration local transpilation.",
       "type": "shell",
-      "command": "docker run --rm -v ",
+      "command": "docker run --rm -v ${file}:/config.fcc:z quay.io/coreos/fcct:latest --pretty --strict /config.fcc > ${workspaceFolder}/build/${fileBasenameNoExtension}.ign",
       "group": {
         "kind": "build",
         "isDefault": true
