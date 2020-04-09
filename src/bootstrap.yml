@@ -1,9 +1,9 @@
 variant: fcos
 version: 1.0.0
-ignition:
-  config:
-    merge:
-      - source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
+# ignition: 
+#   config:
+#     merge:
+#       - source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
 
 # Allowing a remote privileged user login for DEBUG and RECOVERY purpose, this key should be stored securely and only available to
 # a restricted amount of authorized and properly identified people.
