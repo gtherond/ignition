@@ -38,8 +38,8 @@ storage:
           [updates]
           strategy = "immediate"
 
-    - path: /var/lib/vault/config/config.json
-      mode: 0640
-      overwrite: true
-      contents:
-        source: https://raw.githubusercontent.com/gtherond/ignition/master/config/secretsManager/config.json
+    # - path: /var/lib/vault/config/config.json
+    #   mode: 0640
+    #   overwrite: true
+    #   contents:
+    #     source: https://raw.githubusercontent.com/gtherond/ignition/master/config/secretsManager/config.json
