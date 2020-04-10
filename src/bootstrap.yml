@@ -26,6 +26,10 @@ storage:
 
     - path: /etc/zincati/config.d/51-rollout-wariness.toml
       mode: 0640
+      user: 
+        name: zincati
+      group: 
+        name: zincati
       contents:
         inline: |
           [identity]
@@ -33,6 +37,10 @@ storage:
 
     - path: /etc/zincati/config.d/55-updates-strategy.toml
       mode: 0640
+      user: 
+        name: zincati
+      group: 
+        name: zincati
       contents:
         inline: |
           [updates]

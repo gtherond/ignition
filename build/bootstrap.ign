@@ -35,9 +35,13 @@
         "mode": 416
       },
       {
-        "group": {},
+        "group": {
+          "name": "zincati"
+        },
         "path": "/etc/zincati/config.d/51-rollout-wariness.toml",
-        "user": {},
+        "user": {
+          "name": "zincati"
+        },
         "contents": {
           "source": "data:,%5Bidentity%5D%0Arollout_wariness%20%3D%200.5%0A",
           "verification": {}
@@ -45,9 +49,13 @@
         "mode": 416
       },
       {
-        "group": {},
+        "group": {
+          "name": "zincati"
+        },
         "path": "/etc/zincati/config.d/55-updates-strategy.toml",
-        "user": {},
+        "user": {
+          "name": "zincati"
+        },
         "contents": {
           "source": "data:,%5Bupdates%5D%0Astrategy%20%3D%20%22immediate%22%0A",
           "verification": {}
