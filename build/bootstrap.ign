@@ -1,6 +1,12 @@
 {
   "ignition": {
     "config": {
+      "merge": [
+        {
+          "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
+          "verification": {}
+        }
+      ],
       "replace": {
         "source": null,
         "verification": {}
