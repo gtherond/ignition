@@ -1,6 +1,7 @@
 variant: fcos
 version: 1.0.0
-ignition:
-  config:
-    replace:
-      source: https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"

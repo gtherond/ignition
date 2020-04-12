@@ -2,7 +2,7 @@
   "ignition": {
     "config": {
       "replace": {
-        "source": "https://raw.githubusercontent.com/gtherond/ignition/master/build/runtime.ign",
+        "source": null,
         "verification": {}
       }
     },
@@ -12,7 +12,16 @@
     "timeouts": {},
     "version": "3.0.0"
   },
-  "passwd": {},
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+        ]
+      }
+    ]
+  },
   "storage": {},
   "systemd": {}
 }
