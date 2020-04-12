@@ -13,6 +13,16 @@ passwd:
       ssh_authorized_keys:
         - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
 
+    - name: zincati
+      system: true
+      no_create_home: true
+      groups: 
+        - zincati
+
+  groups:
+    - name: zincati
+      system: true
+
 # Create an update wariness and reboot strategy, as we're not in a clustered environment we don't use fleet_lock reboot strategy.
 # Give the seedbox a static name as it needs to be easily discoverable either using DNS or mDNS.
 # Install required common containers.
