@@ -12,8 +12,77 @@
     "timeouts": {},
     "version": "3.0.0"
   },
-  "passwd": {},
-  "storage": {},
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+        ]
+      },
+      {
+        "groups": [
+          "zincati"
+        ],
+        "name": "zincati",
+        "noCreateHome": true,
+        "system": true
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "group": {},
+        "path": "/etc/hostname",
+        "user": {},
+        "contents": {
+          "source": "data:,ns1.bitswalk.net%0A",
+          "verification": {}
+        },
+        "mode": 416
+      },
+      {
+        "group": {
+          "name": "zincati"
+        },
+        "path": "/etc/zincati/config.d/51-rollout-wariness.toml",
+        "user": {
+          "name": "zincati"
+        },
+        "contents": {
+          "source": "data:,%5Bidentity%5D%0Arollout_wariness%20%3D%200.5%0A",
+          "verification": {}
+        },
+        "mode": 416
+      },
+      {
+        "group": {
+          "name": "zincati"
+        },
+        "path": "/etc/zincati/config.d/55-updates-strategy.toml",
+        "user": {
+          "name": "zincati"
+        },
+        "contents": {
+          "source": "data:,%5Bupdates%5D%0Astrategy%20%3D%20%22immediate%22%0A",
+          "verification": {}
+        },
+        "mode": 416
+      },
+      {
+        "group": {},
+        "overwrite": true,
+        "path": "/var/lib/vault/config/config.json",
+        "user": {},
+        "contents": {
+          "source": "https://raw.githubusercontent.com/gtherond/ignition/master/config/secretsManager/config.json",
+          "verification": {}
+        },
+        "mode": 416
+      }
+    ]
+  },
   "systemd": {
     "units": [
       {

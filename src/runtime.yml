@@ -1,5 +1,52 @@
 variant: fcos
 version: 1.0.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+
+    - name: zincati
+      system: true
+      no_create_home: true
+      groups: 
+        - zincati
+
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0640
+      contents:
+        inline: |
+          ns1.bitswalk.net
+
+    - path: /etc/zincati/config.d/51-rollout-wariness.toml
+      mode: 0640
+      user: 
+        name: zincati
+      group: 
+        name: zincati
+      contents:
+        inline: |
+          [identity]
+          rollout_wariness = 0.5
+
+    - path: /etc/zincati/config.d/55-updates-strategy.toml
+      mode: 0640
+      user: 
+        name: zincati
+      group: 
+        name: zincati
+      contents:
+        inline: |
+          [updates]
+          strategy = "immediate"
+
+    - path: /var/lib/vault/config/config.json
+      mode: 0640
+      overwrite: true
+      contents:
+        source: https://raw.githubusercontent.com/gtherond/ignition/master/config/secretsManager/config.json
 
 systemd:
   units:
