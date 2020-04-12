@@ -5,3 +5,11 @@ passwd:
     - name: core
       ssh_authorized_keys:
         - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuOd04cEYQXzbnR+bXsKWhHqrcUkTMOodP62JcZPMN2"
+
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0640
+      contents:
+        inline: |
+          ns1.bitswalk.net

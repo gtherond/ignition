@@ -22,6 +22,19 @@
       }
     ]
   },
-  "storage": {},
+  "storage": {
+    "files": [
+      {
+        "group": {},
+        "path": "/etc/hostname",
+        "user": {},
+        "contents": {
+          "source": "data:,ns1.bitswalk.net",
+          "verification": {}
+        },
+        "mode": 416
+      }
+    ]
+  },
   "systemd": {}
 }
