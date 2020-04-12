@@ -19,12 +19,6 @@
     "version": "3.0.0"
   },
   "passwd": {
-    "groups": [
-      {
-        "name": "zincati",
-        "system": true
-      }
-    ],
     "users": [
       {
         "name": "core",

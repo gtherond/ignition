@@ -22,7 +22,7 @@
         "name": "vault.service"
       },
       {
-        "contents": "[Unit]\nDescription=sources repository pod\n\n[Service]\nType=oneshot\nExecStartPre=/usr/bin/podman pod rm sources\nExecStartPre=/usr/bin/podman pod create --name sources -p 2222:22 -p 80:3000\nExecStartPre=/usr/bin/podman run --name gitea-db -d --pod sources -v /var/lib/gitea/db/:/var/lib/mysql:z -e MYSQL_RANDOM_ROOT_PASSWORD=yes -e MYSQL_DATABASE=\"gitea\" -e MYSQL_USER=\"gitea\" -e MYSQL_PASSWORD=\"Ch@ng3M3\" mariadb:10.5.1\nExecStart=/usr/bin/podman run --name gitea-app -d --pod sources -v /var/lib/gitea/:/data:z gitea/gitea:1.11.3\nExecStop=/usr/bin/podman pod stop sources\nRemainAfterExit=yes\nKillMode=none\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=sources repository pod\n\n[Service]\nType=oneshot\nExecStartPre=/usr/bin/podman pod rm sources\nExecStartPre=/usr/bin/podman pod create --name sources -p 2222:22 -p 80:3000\nExecStartPre=/usr/bin/podman run --name gitea-db -d --pod sources -v /var/lib/gitea/db/:/var/lib/mysql:z -e MYSQL_RANDOM_ROOT_PASSWORD=yes -e MYSQL_DATABASE=\"gitea\" -e MYSQL_USER=\"gitea\" mariadb:10.5.1\nExecStart=/usr/bin/podman run --name gitea-app -d --pod sources -v /var/lib/gitea/:/data:z gitea/gitea:1.11.3\nExecStop=/usr/bin/podman pod stop sources\nRemainAfterExit=yes\nKillMode=none\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "gitea.service"
       }
